@@ -70,15 +70,17 @@
       // var PLAYER_ONE = 'X';
       // var PLAYER_TWO = 'O';
       // var currentTurn = PLAYER_ONE;
-      // //attach event listener to the board
-      // var board = document.querySelector('.board');
-      // board.addEventListener('click', function(e) {
-      //   e.target.innerHTML = currentTurn;
-      //   currentTurn = currentTurn === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE;
-      //   if (checkWinner()) {
-      //     alert ('somebody won');
-      //   }
-      // });
+      
+      //attach event listener to the board
+      var board = document.querySelector('.board');
+
+      board.addEventListener('click', function(e) {
+        e.target.innerHTML = gameState.currentTurn;
+        gameState.currentTurn = gameState.currentTurn === gameState.PLAYER_ONE ? gameState.PLAYER_TWO : gameState.PLAYER_ONE;
+        // if (checkWinner()) {
+        //   alert ('somebody won');
+        // }
+      });
     
       // function checkWinner() {
       //   var squares = Array.prototype.slice.call(document.querySelectorAll('.square'), 0);
