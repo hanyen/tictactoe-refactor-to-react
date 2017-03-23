@@ -18,16 +18,28 @@ class App extends Component {
     var board = document.querySelector('.board');
     board.addEventListener('click', (e) => {
       e.target.innerHTML = this.state.currentTurn;
-      // this.setState.board[e.target.id] = this.state.currentTurn;
+      var board = this.state.board;
+      board[e.target.id] = this.state.currentTurn;
+      this.setState({board: board});
+      // console.log(this.state.board);
       var currentTurn = this.state.currentTurn === this.state.PLAYER_ONE ? this.state.PLAYER_TWO : this.state.PLAYER_ONE;
       this.setState({currentTurn: currentTurn});
-      
-      // this.setState.currentTurn = this.state.currentTurn === this.state.PLAYER_ONE ? this.state.PLAYER_TWO : this.state.PLAYER_ONE;
 
-      // if (checkWinner()) {
-      //   alert ('somebody won');
-      // }
+      if (this.checkWinner()) {
+        alert ('somebody won');
+      }
     });
+  }
+
+  checkWinner() {
+    var winningCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    return winningCombos.find((combo) => {
+      if (this.state.board[combo[0]] === this.state.board[combo[1]] && this.state.board[combo[1]] === this.state.board[combo[2]]) {
+        return this.state.board[combo[0]];
+      } else {
+        return false;
+      }
+    })
   }
 
   render() {
